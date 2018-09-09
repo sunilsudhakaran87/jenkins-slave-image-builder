@@ -12,13 +12,11 @@ pipeline {
     }
     stages {
         stage('Build') {
-            steps {
-              step {
-                 def commitId = env.GIT_COMMIT.substring(0,4)
-                 script {
-                    docker.build registry + ":" + commitId 
-                 }
-              }
+            steps {              
+               def commitId = env.GIT_COMMIT.substring(0,4)
+               script {
+                  docker.build registry + ":" + commitId 
+               }              
             }
         }
     }
