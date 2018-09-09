@@ -4,7 +4,7 @@ pipeline {
       registry = "asia.gcr.io/white-berm-210209/jenkins-slave-builder"
       registryCredential = 'my-project-gcr-credentials'
       commitId = env.GIT_COMMIT.substring(0,4)
-      gcrCreds=credentials('my-project-gcr-credentials')
+      //gcrCreds=credentials('my-project-gcr-credentials')
     }
     agent {
         label 'gcr-docker-container-label'
