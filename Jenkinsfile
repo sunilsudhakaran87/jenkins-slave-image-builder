@@ -6,15 +6,11 @@ pipeline {
       commitId = env.GIT_COMMIT.substring(0,4)
     }
     agent {
-        docker {
-            image 'docker'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
+        label 'gcr-docker-container-label'
     }
     stages {
         stage('Build') {
-            steps {              
-               
+            steps {
                script {                  
                   docker.build registry + ":" + commitId 
                }              
