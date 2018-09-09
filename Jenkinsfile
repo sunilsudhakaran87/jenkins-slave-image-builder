@@ -17,7 +17,7 @@ pipeline {
                }
                */
               container('gcr-docker-container') {
-                sh "docker build -t \"${registry}$:${commitId}\""
+                sh "docker build -t \"\${registry}\$:\${commitId}\""
                 sh "docker push"
               }
             }
