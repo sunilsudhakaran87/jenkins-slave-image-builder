@@ -3,6 +3,7 @@ pipeline {
     environment {
       registry = "asia.gcr.io/white-berm-210209/jenkins-slave-builder"
       registryCredential = 'my-project-gcr-credentials'
+      commitId = env.GIT_COMMIT.substring(0,4)
     }
     agent {
         docker {
@@ -14,8 +15,7 @@ pipeline {
         stage('Build') {
             steps {              
                
-               script {
-                  def commitId = env.GIT_COMMIT.substring(0,4)
+               script {                  
                   docker.build registry + ":" + commitId 
                }              
             }
