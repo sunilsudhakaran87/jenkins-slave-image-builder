@@ -11,9 +11,15 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+              /*
                script {                  
                   docker.build registry + ":" + commitId 
-               }              
+               }
+               */
+              container('gcr-docker-container') {
+                sh "docker build -t \"${registry}$:${commitId}\""
+                sh "docker push"
+              }
             }
         }
     }
