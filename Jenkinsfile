@@ -17,10 +17,10 @@ pipeline {
                   docker.build registry + ":" + commitId 
                }
                */
-              withCredentials([[$class: 'StringBinding', credentialsId: "my-project-gcr-credentials", variable: 'GCS_KEY']]) {
+              withCredentials([file(credentialsId: 'my-project-gcr-credentials', variable: 'GC_KEY')])  {
                 container('gcr-docker-container') {
                   sh "docker build -t \"\${registry}:\${commitId}\" ."
-                  sh "echo \$GCS_KEY | base64 -d  > creds.json"
+                  sh "echo \$GC_KEY | base64 -d  > creds.json"
                   sh "docker login -u _json_key -p \"\$(cat creds.json)\" https://asia.gcr.io"
                   sh "docker push \${registry}:\${commitId}"
                 }
