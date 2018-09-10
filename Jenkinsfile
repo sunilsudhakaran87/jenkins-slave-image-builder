@@ -2,7 +2,7 @@ pipeline {
   
     environment {
         registry = "asia.gcr.io/white-berm-210209/jenkins-slave-builder"
-        commitId = env.GIT_COMMIT.substring(0,4)
+        commitId = env.GIT_COMMIT.substring(0,7)
     }
   
     agent {
