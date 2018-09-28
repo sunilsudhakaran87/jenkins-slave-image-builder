@@ -1,7 +1,7 @@
 pipeline {
   
     environment {
-        registry = "asia.gcr.io/white-berm-210209/jenkins-slave-builder"
+        registry = "asia.gcr.io/strong-eon-217812/jenkins-slave-builder"
         commitId = env.GIT_COMMIT.substring(0,6)
     }
   
@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {              
-                withCredentials([file(credentialsId: 'gcr-auth-file', variable: 'GC_KEY')])  {
+                withCredentials([file(credentialsId: 'gcr-secrets-file', variable: 'GC_KEY')])  {
                     container('gcr-docker-container') {
                         sh '''
                             docker build -t "${registry}:${commitId}" .
