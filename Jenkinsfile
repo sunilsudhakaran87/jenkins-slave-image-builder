@@ -1,7 +1,7 @@
 pipeline {
   
     environment {
-        registry = "asia.gcr.io/strong-eon-217812/jenkins-slave-builder"
+        registry = "asia.gcr.io/crypto-haven-217910/jenkins-slave-builder"
         commitId = env.GIT_COMMIT.substring(0,6)
     }
   
