@@ -16,8 +16,8 @@ pipeline {
                     container('gcr-docker-container') {
                         sh '''
                             docker build -t "${registry}:${commitId}" .
-                            #cat ${GC_KEY} | docker login -u _json_key --password-stdin https://asia.gcr.io
-                            docker login -u _json_key -p $(cat ${GC_KEY}) https://asia.gcr.io
+                            cat ${GC_KEY} | docker login -u _json_key --password-stdin https://asia.gcr.io
+                            #docker login -u _json_key -p $(cat ${GC_KEY}) https://asia.gcr.io
                             docker push ${registry}:${commitId}
                         '''
                     }
