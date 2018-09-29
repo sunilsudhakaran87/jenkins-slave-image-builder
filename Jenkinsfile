@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
             steps {              
                 withCredentials([file(credentialsId: 'gcr-secrets-file', variable: 'GC_KEY')])  {
-                    container('gcr-docker-container') {
+                    container('docker-container-slave') {
                         sh '''
                             docker build -t "${registry}:${commitId}" .
                             cat ${GC_KEY} | docker login -u _json_key --password-stdin https://asia.gcr.io
