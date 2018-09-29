@@ -6,7 +6,7 @@ pipeline {
     }
   
     agent {
-        label 'gcr-docker-container-label'
+        label 'jenkins-k8s-slave-label'
     }
   
     stages {
